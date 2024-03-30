@@ -16,10 +16,10 @@ namespace PaginatedFilteredProducts.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    PriceAmount = table.Column<decimal>(type: "TEXT", nullable: false),
-                    PriceCurrency = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false)
+                    Name_Value = table.Column<string>(type: "TEXT", nullable: false),
+                    Price_Amount = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Price_Currency = table.Column<string>(type: "TEXT", nullable: false),
+                    Description_Value = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,8 +31,8 @@ namespace PaginatedFilteredProducts.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ReviewText = table.Column<string>(type: "TEXT", nullable: false),
-                    Rating = table.Column<int>(type: "INTEGER", nullable: false),
+                    Text_Value = table.Column<string>(type: "TEXT", nullable: false),
+                    Rating_Value = table.Column<int>(type: "INTEGER", nullable: false),
                     ProductId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

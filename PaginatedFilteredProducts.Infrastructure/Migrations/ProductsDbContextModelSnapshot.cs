@@ -52,13 +52,11 @@ namespace PaginatedFilteredProducts.Infrastructure.Migrations
                                 .HasColumnType("TEXT");
 
                             b1.Property<decimal>("Amount")
-                                .HasColumnType("TEXT")
-                                .HasColumnName("PriceAmount");
+                                .HasColumnType("TEXT");
 
                             b1.Property<string>("Currency")
                                 .IsRequired()
-                                .HasColumnType("TEXT")
-                                .HasColumnName("PriceCurrency");
+                                .HasColumnType("TEXT");
 
                             b1.HasKey("ProductId");
 
@@ -75,8 +73,7 @@ namespace PaginatedFilteredProducts.Infrastructure.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .HasColumnType("TEXT")
-                                .HasColumnName("Description");
+                                .HasColumnType("TEXT");
 
                             b1.HasKey("ProductId");
 
@@ -93,8 +90,7 @@ namespace PaginatedFilteredProducts.Infrastructure.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .HasColumnType("TEXT")
-                                .HasColumnName("Name");
+                                .HasColumnType("TEXT");
 
                             b1.HasKey("ProductId");
 
@@ -128,8 +124,7 @@ namespace PaginatedFilteredProducts.Infrastructure.Migrations
                                 .HasColumnType("TEXT");
 
                             b1.Property<int>("Value")
-                                .HasColumnType("INTEGER")
-                                .HasColumnName("Rating");
+                                .HasColumnType("INTEGER");
 
                             b1.HasKey("ReviewId");
 
@@ -146,8 +141,7 @@ namespace PaginatedFilteredProducts.Infrastructure.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .HasColumnType("TEXT")
-                                .HasColumnName("ReviewText");
+                                .HasColumnType("TEXT");
 
                             b1.HasKey("ReviewId");
 

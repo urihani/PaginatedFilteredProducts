@@ -18,16 +18,12 @@ public class ReviewConfiguration : IEntityTypeConfiguration<Review>
 
         builder.OwnsOne(r => r.Text, t =>
         {
-            t.Property<string>("Value")
-                .HasField("_value")
-                .HasColumnName("ReviewText");
+            t.WithOwner();
         });
 
         builder.OwnsOne(r => r.Rating, r =>
         {
-            r.Property<int>("Value")
-                .HasField("_value")
-                .HasColumnName("Rating");
+            r.WithOwner();
         });
     }
 }

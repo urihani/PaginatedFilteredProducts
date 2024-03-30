@@ -4,13 +4,7 @@ namespace PaginatedFilteredProducts.Domain.Products.ValueObjects;
 
 public class ProductName : BaseValueObject
 {
-    private string _value;
-    
-    public string Value
-    {
-        get => _value;
-        private set => _value = value; // Keep setter private to enforce encapsulation
-    }
+    public string Value { get; private set; }
     
     private ProductName(){}
 

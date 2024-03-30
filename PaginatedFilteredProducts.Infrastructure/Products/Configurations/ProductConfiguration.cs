@@ -14,27 +14,17 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 
         builder.OwnsOne(p => p.Name, n =>
         {
-            n.Property<string>("Value")
-                .HasField("_value")
-                .HasColumnName("Name");
+            n.WithOwner();
         });
 
         builder.OwnsOne(p => p.Price, p =>
         {
-            p.Property<decimal>("Amount")
-                .HasField("_amount")
-                .HasColumnName("PriceAmount");
-
-            p.Property<string>("Currency")
-                .HasField("_currency")
-                .HasColumnName("PriceCurrency");
+            p.WithOwner();
         });
 
         builder.OwnsOne(p => p.Description, d =>
         {
-            d.Property<string>("Value")
-                .HasField("_value")
-                .HasColumnName("Description");
+            d.WithOwner();
         });
 
         builder.HasMany(p => p.Reviews)
