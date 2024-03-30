@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using PaginatedFilteredProducts.Domain.Products.Aggregates;
 using PaginatedFilteredProducts.Infrastructure.Products.Configurations;
 

@@ -7,7 +7,7 @@ public static class ReviewFactory
 {
     public static Review CreateReview(string text, int rating)
     {
-        var reviewId = new ReviewId(Guid.NewGuid());
+        var reviewId = Guid.NewGuid();
         var reviewText = new ReviewText(text);
         var reviewRating = new ReviewRating(rating);
 
@@ -17,13 +17,16 @@ public static class ReviewFactory
 
 public class Review : BaseEntity
 {
-    public new ReviewId Id { get; private set; }
+    public new Guid Id { get; private set; }
     public ReviewText Text { get; private set; }
     public ReviewRating Rating { get; private set; }
 
+    public Guid ProductId { get; set; }
+    public Product Product { get; set; } // Navigation Property
+
     private Review(){}
     
-    public Review(ReviewId id, ReviewText text, ReviewRating rating)
+    public Review(Guid id, ReviewText text, ReviewRating rating)
     {
         Id = id;
         Text = text;

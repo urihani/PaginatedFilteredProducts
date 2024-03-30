@@ -9,7 +9,7 @@ public static class ProductFactory
 {
     public static Product CreateProduct(string name, decimal amount, string currency, string description)
     {
-        var productId = new ProductId(Guid.NewGuid());
+        var productId = Guid.NewGuid();
         var productName = new ProductName(name);
         var price = new Money(amount, currency);
         var productDescription = new ProductDescription(description);
@@ -20,7 +20,7 @@ public static class ProductFactory
 
 public class Product: BaseEntity, IAggregateRoot
 {
-    public new ProductId Id { get; private set; }
+    public new Guid Id { get; private set; }
     public ProductName Name { get; private set; }
     public Money Price { get; private set; }
     public ProductDescription Description { get; private set; }
@@ -29,7 +29,7 @@ public class Product: BaseEntity, IAggregateRoot
     
     private Product() { }
 
-    public Product(ProductId id, ProductName name, Money price, ProductDescription description)
+    public Product(Guid id, ProductName name, Money price, ProductDescription description)
     {
         Id = id;
         Name = name;

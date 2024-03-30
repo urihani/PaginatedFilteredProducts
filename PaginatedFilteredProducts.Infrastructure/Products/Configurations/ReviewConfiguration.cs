@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PaginatedFilteredProducts.Domain.Products.Aggregates;
+using PaginatedFilteredProducts.Domain.Products.ValueObjects;
 
 namespace PaginatedFilteredProducts.Infrastructure.Products.Configurations;
 
@@ -10,11 +12,22 @@ public class ReviewConfiguration : IEntityTypeConfiguration<Review>
     {
         builder.HasKey(r => r.Id);
 
-        // Assuming Review has a reference back to Product, configure the foreign key
-        builder.HasOne<Product>().WithMany("_reviews").HasForeignKey("ProductId");
+        builder.HasOne(r => r.Product)
+            .WithMany(p => p.Reviews)
+            .HasForeignKey(r => r.ProductId);
 
-        // Configure fields for the Review entity, such as text, rating, etc.
-        builder.OwnsOne(r => r.Text).WithOwner();
-        builder.OwnsOne(r => r.Rating).WithOwner();
+        builder.OwnsOne(r => r.Text, t =>
+        {
+            t.Property<string>("Value")
+                .HasField("_value")
+                .HasColumnName("ReviewText");
+        });
+
+        builder.OwnsOne(r => r.Rating, r =>
+        {
+            r.Property<int>("Value")
+                .HasField("_value")
+                .HasColumnName("Rating");
+        });
     }
 }

@@ -4,7 +4,13 @@ namespace PaginatedFilteredProducts.Domain.Products.ValueObjects;
 
 public class ReviewRating : BaseValueObject
 {
-    private int Value { get; set; }
+    private int _value;
+    
+    public int Value
+    {
+        get => _value;
+        private set => _value = value; // Keep setter private to enforce encapsulation
+    }
     
     private ReviewRating(){}
 
