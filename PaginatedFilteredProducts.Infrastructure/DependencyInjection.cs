@@ -15,6 +15,7 @@ public static class DependencyInjection
             options.UseSqlite(configuration.GetConnectionString("sqliteConnectionString")));
 
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IReviewRepository, ReviewRepository>();
 
         return services;
     }
