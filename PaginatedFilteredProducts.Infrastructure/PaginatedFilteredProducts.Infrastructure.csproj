@@ -10,4 +10,12 @@
       <ProjectReference Include="..\PaginatedFilteredProducts.Application\PaginatedFilteredProducts.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0-preview.2.24128.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Products\" />
+    </ItemGroup>
+
 </Project>
