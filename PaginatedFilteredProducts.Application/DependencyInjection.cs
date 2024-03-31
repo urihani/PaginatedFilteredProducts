@@ -1,5 +1,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using PaginatedFilteredProducts.Application.Products.Queries;
+using PaginatedFilteredProducts.Domain.Common.Interfaces;
 
 namespace PaginatedFilteredProducts.Application;
 

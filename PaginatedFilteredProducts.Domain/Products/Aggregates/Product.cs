@@ -24,7 +24,7 @@ public class Product: BaseEntity, IAggregateRoot
     public ProductName Name { get; private set; }
     public Money Price { get; private set; }
     public ProductDescription Description { get; private set; }
-    private readonly List<Review> _reviews;
+    private readonly List<Review> _reviews = new List<Review>();
     public IReadOnlyCollection<Review> Reviews => _reviews.AsReadOnly();
     
     private Product() { }
@@ -35,7 +35,6 @@ public class Product: BaseEntity, IAggregateRoot
         Name = name;
         Price = price;
         Description = description;
-        _reviews = new List<Review>();
     }
 
     public void AddReview(Review review)

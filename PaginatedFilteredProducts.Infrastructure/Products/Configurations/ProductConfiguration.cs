@@ -26,9 +26,8 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         {
             d.WithOwner();
         });
-
-        builder.HasMany(p => p.Reviews)
-            .WithOne(r => r.Product)
-            .HasForeignKey(r => r.ProductId);
+        
+        var navigation = builder.Metadata.FindNavigation(nameof(Product.Reviews));
+        navigation?.SetPropertyAccessMode(PropertyAccessMode.Field);
     }
 }

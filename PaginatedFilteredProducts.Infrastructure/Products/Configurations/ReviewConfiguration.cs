@@ -12,10 +12,6 @@ public class ReviewConfiguration : IEntityTypeConfiguration<Review>
     {
         builder.HasKey(r => r.Id);
 
-        builder.HasOne(r => r.Product)
-            .WithMany(p => p.Reviews)
-            .HasForeignKey(r => r.ProductId);
-
         builder.OwnsOne(r => r.Text, t =>
         {
             t.WithOwner();
