@@ -7,7 +7,7 @@ namespace PaginatedFilteredProducts.Domain.Products.Aggregates;
 
 public static class ProductFactory
 {
-    public static Product CreateProduct(string name, decimal amount, string currency, string description)
+    public static Product CreateProduct(string name, double amount, string currency, string description)
     {
         var productId = Guid.NewGuid();
         var productName = new ProductName(name);

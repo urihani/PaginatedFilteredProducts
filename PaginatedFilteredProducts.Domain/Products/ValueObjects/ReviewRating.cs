@@ -1,3 +1,4 @@
+using Ardalis.GuardClauses;
 using PaginatedFilteredProducts.Domain.Common.Abstractions;
 
 namespace PaginatedFilteredProducts.Domain.Products.ValueObjects;
@@ -10,10 +11,7 @@ public class ReviewRating : BaseValueObject
 
     public ReviewRating(int value)
     {
-        if (value < 1 || value > 5)
-        {
-            throw new ArgumentOutOfRangeException(nameof(value), "Rating must be between 1 and 5");
-        }
+        Guard.Against.OutOfRange(value, nameof(value), 1, 5);
 
         Value = value;
     }

@@ -1,3 +1,4 @@
+using Ardalis.GuardClauses;
 using AutoMapper;
 using MediatR;
 using PaginatedFilteredProducts.Application.Products.Dtos;
@@ -20,19 +21,26 @@ public class GetPaginatedProductsQueryHandler : IRequestHandler<GetPaginatedProd
 
     public async Task<PaginatedProductsResultDto> Handle(GetPaginatedProductsQuery request, CancellationToken cancellationToken)
     {
-        // Create a specification for paginated products
-        var productsSpec = new ProductsPaginatedSpecification(request.PageNumber * request.PageSize, request.PageSize,  request.IncludeReviews);
+        Guard.Against.Null(request, nameof(request));
         
-        // Fetch products using the specification
+        if (!string.IsNullOrWhiteSpace(request.SortInstruction.SortDirection))
+        {
+            Guard.Against.NullOrEmpty(request.SortInstruction.Column, nameof(request.SortInstruction.Column));
+        }
+        
+        var productsSpec = new ProductsPaginatedSpecification(
+            skip: request.PageNumber * request.PageSize,
+            take: request.PageSize,
+            includeReviews: request.IncludeReviews,
+            sortInstruction: (request.SortInstruction.Column, request.SortInstruction.SortDirection),
+            filterCriteria: request.FilterCriteria);
+        
         var products = await _productRepository.ListAsync(productsSpec, cancellationToken);
 
-        // Map domain entities to DTOs
         var productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
 
-        // Optionally, get the total count for pagination purposes
         var totalCount = await _productRepository.CountAsync(cancellationToken);
 
-        // Return the paginated result as DTO
         return new PaginatedProductsResultDto
         {
             Products = productDtos,

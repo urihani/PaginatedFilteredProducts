@@ -1,3 +1,4 @@
+using Ardalis.GuardClauses;
 using PaginatedFilteredProducts.Domain.Common.Abstractions;
 
 namespace PaginatedFilteredProducts.Domain.Products.ValueObjects;
@@ -10,7 +11,9 @@ public class ProductDescription : BaseValueObject
 
     public ProductDescription(string value)
     {
-        Value = value ?? throw new ArgumentNullException(nameof(value));
+        Guard.Against.NullOrWhiteSpace(value, nameof(value));
+
+        Value = value;
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

@@ -1,3 +1,4 @@
+using Ardalis.GuardClauses;
 using PaginatedFilteredProducts.Domain.Common.Abstractions;
 
 namespace PaginatedFilteredProducts.Domain.Products.ValueObjects;
@@ -10,10 +11,7 @@ public class ReviewText : BaseValueObject
 
     public ReviewText(string value)
     {
-        if (string.IsNullOrWhiteSpace(value))
-        {
-            throw new ArgumentException("Review text cannot be empty");
-        }
+        Guard.Against.NullOrWhiteSpace(value, nameof(value));
 
         Value = value;
     }

@@ -14,7 +14,6 @@ public class ProductMappingProfile : Profile
             .ForMember(dest => dest.Currency, opt => opt.MapFrom(src => src.Price.Currency)) // Assuming Currency is a string property in the Money value object
             .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price.Amount)); // Assuming Amount is a decimal property in the Money value object
 
-        // Assuming ReviewDto and Review are already correctly mapped for other properties
         CreateMap<Review, ReviewDto>()
             .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Text.Value)) // Map from ReviewText.Value to string
             .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => src.Rating.Value));

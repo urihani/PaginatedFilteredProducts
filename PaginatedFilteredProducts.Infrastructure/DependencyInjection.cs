@@ -19,6 +19,7 @@ public static class DependencyInjection
         });
 
         services.AddScoped<ProductsDbContextInitialiser>();
+        services.AddSingleton<DatabaseInitializer>();
         
         services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
         services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
