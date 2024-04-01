@@ -11,7 +11,7 @@ using PaginatedFilteredProducts.Infrastructure.Products.Data;
 namespace PaginatedFilteredProducts.Infrastructure.Migrations
 {
     [DbContext(typeof(ProductsDbContext))]
-    [Migration("20240331083521_InitialMigration")]
+    [Migration("20240401101637_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

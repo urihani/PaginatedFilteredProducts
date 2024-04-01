@@ -36,7 +36,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/api/products", async (IMediator mediator, int pageNumber, int pageSize, bool includeReviews = false) =>
+app.MapGet("/products", async (IMediator mediator, int pageNumber, int pageSize, bool includeReviews = false) =>
     {
         var query = new GetPaginatedProductsQuery(pageNumber, pageSize, includeReviews);
         var result = await mediator.Send(query);

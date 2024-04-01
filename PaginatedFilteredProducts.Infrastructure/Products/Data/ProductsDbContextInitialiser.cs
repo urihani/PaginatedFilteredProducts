@@ -1,6 +1,8 @@
+using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PaginatedFilteredProducts.Domain.Products.Aggregates;
+using PaginatedFilteredProducts.Domain.Products.ValueObjects;
 
 namespace PaginatedFilteredProducts.Infrastructure.Products.Data;
 
@@ -50,20 +52,29 @@ public class ProductsDbContextInitialiser
         {
             var products = new List<Product>();
 
+            // Define available currencies
+            var currencies = new[] { "USD", "EUR" };
+
+            // Set up Faker to generate parameter values
+            var faker = new Faker();
+
             for (int i = 1; i <= 300; i++)
             {
-                var product = ProductFactory.CreateProduct(
-                    name: $"Product {i}",
-                    amount: 100m + i, // Example pricing logic
-                    currency: "USD",
-                    description: $"Description for Product {i}");
+                // Generate parameter values
+                var name = faker.Commerce.ProductName();
+                var amount = faker.Random.Decimal(50, 150); // Example: random amount between 50 and 150
+                var currency = faker.PickRandom(currencies);
+                var description = faker.Commerce.ProductDescription();
 
-                // Add some reviews for each product
+                // Use the factory method to create a Product instance
+                var product = ProductFactory.CreateProduct(name, amount, currency, description);
+
+                // Add some reviews for each product using a similar approach
                 for (int j = 1; j <= 5; j++) // Example: 5 reviews per product
                 {
-                    var review = ReviewFactory.CreateReview(
-                        text: $"Review {j} for Product {i}",
-                        rating: j % 5 + 1); // Cycle through ratings 1-5
+                    var reviewText = faker.Lorem.Sentence();
+                    var reviewRating = faker.Random.Int(1, 5);
+                    var review = ReviewFactory.CreateReview(reviewText, reviewRating);
 
                     product.AddReview(review);
                 }
